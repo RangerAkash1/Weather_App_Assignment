@@ -20,10 +20,12 @@ function SignInForm() {
         console.log(res.data);
         localStorage.setItem("token", JSON.stringify(res.data.token));
         navigate("/");
+        toast.dismiss();
         toast.success("Logged in");
       })
       .catch((err) => {
         console.log(err);
+        toast.dismiss();
         toast.error("Invalid Info");
       });
   };

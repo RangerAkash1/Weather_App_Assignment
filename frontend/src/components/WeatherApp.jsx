@@ -15,12 +15,17 @@ function WeatherApp() {
 
   const handleSubmit = () => {
     toast.loading("Fetching data");
-    axiosInstance.post("/weather/", { locations }).then((res) => {
-      console.log(res.data);
-      setWeatherData(res.data);
-      toast.dismiss();
-      toast.success("Data Fetched");
-    });
+    axiosInstance
+      .post("/weather/", { locations })
+      .then((res) => {
+        console.log(res.data);
+        setWeatherData(res.data);
+        toast.dismiss();
+        toast.success("Data Fetched");
+      })
+      .catch((e) => {
+        toast.dismiss();
+      });
   };
 
   return (

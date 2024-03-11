@@ -5,10 +5,14 @@ export const axiosInstance = axios.create({
   withCredentials: true,
 });
 
-const token = JSON.parse(localStorage.getItem("token")) || null;
+const getToken = () => JSON.parse(localStorage.getItem("token"));
 
-if (token) {
-  axiosInstance.defaults.headers["Authorization"] = `Bearer ${token.access}`;
+if (getToken()) {
+  axiosInstance.defaults.headers["Authorization"] = `Bearer ${
+    getToken().access
+  }`;
 }
+
+console.log(axiosInstance.defaults.headers["Authorization"]);
 
 export default axiosInstance;
